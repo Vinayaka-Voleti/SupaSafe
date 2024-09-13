@@ -17,7 +17,7 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar theme={theme} setTheme={setTheme} title="Supasafe"/>
+      <NavBar theme={theme} setTheme={setTheme} title="SupaSafe"/>
       <AuthHome/>
       <Footer/>
     </div>

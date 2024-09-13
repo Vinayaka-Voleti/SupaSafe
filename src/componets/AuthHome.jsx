@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../supabase/supabaseClient';
+import Welcome from './Welcome';
 
 const AuthHome = (props) => {
   const [user, setUser] = useState(null);
@@ -66,53 +67,39 @@ const AuthHome = (props) => {
   return (
     <div className="container py-5">
       <div className="row align-items-center g-lg-5">
-        <div className="col-lg-7 d-flex flex-column justify-content-center">
-          <h1 className="text-5xl sm:text-6xl font-bold" style={{ fontSize: '3rem', fontWeight: '700' }}>
-            SupaSafe: Your Community's Watchful Eye
-          </h1>
-          <p className="text-muted-foreground text-sm" style={{ lineHeight: '1.6' }}>
-            Transform how you stay connected with your neighborhood through SupaSafe! Our platform offers a streamlined and intuitive approach to community safety and engagement. Enjoy a user-friendly interface that helps you stay informed and connected, ensuring your neighborhood is safer and more interactive. Experience the power of real-time updates and community alerts with our easy-to-use design, built for maximum convenience and reliability.
-          </p>
-        </div>
-        <div className="col-lg-5">
-          <div className="p-4 p-md-5 border rounded-3" style={{ backgroundColor }}>
-            <form>
-              <div className="form-floating mb-3">
-                <input type="email" className="form-control" id="floatingInput" placeholder="name@example.com" />
-                <label htmlFor="floatingInput">Email address</label>
-              </div>
-              <div className="form-floating mb-3">
-                <input type="password" className="form-control" id="floatingPassword" placeholder="Password" />
-                <label htmlFor="floatingPassword">Password</label>
-              </div>
-              <div className="checkbox mb-3">
-                <label>
-                  <input type="checkbox" value="remember-me" /> Remember me
-                </label>
-              </div>
-            </form>
-            <div className="auth-container mt-3">
+      <div className="col-lg-7 d-flex flex-column justify-content-center">
+        <h2 className="text-5xl sm:text-6xl font-bold" style={{ fontSize: '3rem', fontWeight: '700', textAlign: 'left', maxWidth: '90%' }}>
+          SupaSafe: Your Community's Watchful Eye
+        </h2>
+        <p className="text-muted" style={{ lineHeight: '1.6', fontSize: '1rem', textAlign: 'left', maxWidth: '90%' }}>
+          Stay connected with your neighborhood through SupaSafe! Our intuitive platform enhances community safety with real-time updates and alerts. Enjoy a user-friendly design built for maximum convenience.
+        </p>
+      </div>
+
+
+
+        
+            <div className="" style={{display: "flex"}}>
               {user ? (
                 <div className="auth-user">
-                  <h1>Welcome, {user.email}!</h1>
-                  <button className="logout-button" onClick={logout}>
+                  <Welcome/>
+                  {/* <h1>Welcome, {user.email}!</h1> */}
+                  {/* <button className="logout-button" onClick={logout}>
                     Log Out
-                  </button>
+                  </button> */}
                 </div>
               ) : (
                 <div className="auth-login">
-                  <button className="login-button github" onClick={login_GitHub}>
+                  {/* <button className="login-button github" onClick={login_GitHub}>
                     Log In with GitHub
                   </button>
-                  <p>or</p>
-                  <button className="login-button google" onClick={loginWithGoogle}>
-                    Log In with Google
+                  <p>or</p> */}
+                  <button className="btn btn-success" onClick={loginWithGoogle}>
+                    Get Started
                   </button>
                 </div>
               )}
             </div>
-          </div>
-        </div>
       </div>
     </div>
   );

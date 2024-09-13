@@ -1,0 +1,9 @@
+/* Custom dropdown positioning */
+.dropdown-menu-left {
+    position: absolute; /* Ensures the dropdown is positioned relative to its closest positioned ancestor */
+    right: 0; /* Aligns the right edge of the dropdown with the right edge of the button */
+    transform: translateX(-100%); /* Moves the dropdown to the left of the button */
+    margin-top: 0.5rem; /* Adjust margin if necessary */
+    z-index: 1000; /* Ensure dropdown is above other content */
+  }
+  
