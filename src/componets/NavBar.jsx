@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../supabase/supabaseClient';
-import './NavBar'
-
+import './NavBar';
 
 const NavBar = (props) => {
   const [user, setUser] = useState(null);
@@ -32,6 +31,9 @@ const NavBar = (props) => {
     fetchSession();
   }, []);
 
+  const handelToggle = ()=>{
+    console.log("hello");
+  }
   const loginWithGoogle = async () => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
@@ -47,7 +49,11 @@ const NavBar = (props) => {
 
   const logout = async () => {
     const { error } = await supabase.auth.signOut();
-    if (error) console.error('Logout error:', error.message);
+    if (error) {
+      console.error('Logout error:', error.message);
+    } else {
+      setUser(null);
+    }
   };
 
   return (
@@ -67,20 +73,6 @@ const NavBar = (props) => {
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="#">Link</a>
-              </li>
-              <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown
-                </a>
-                <ul className="dropdown-menu">
-                  <li><a className="dropdown-item" href="#">Action</a></li>
-                  <li><a className="dropdown-item" href="#">Another action</a></li>
-                  <li><hr className="dropdown-divider" /></li>
-                  <li><a className="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link disabled" aria-disabled="true">Disabled</a>
               </li>
             </ul>
             <div className="auth-container mt-3">
@@ -104,8 +96,11 @@ const NavBar = (props) => {
                         <span>No Avatar</span>
                       )}
                     </a>
-                    <div className="dropdown-menu dropdown-menu-start">
-                      <button className="dropdown-item" onClick={logout}>
+                    {/* Aligning the dropdown menu to the left */}
+                    {/* <button onClick={handelToggle}>Toggle</button> */}
+                    <div className="dropdown-menu dropdown-menu-start " style={{position:'absolute', left:-100}}>
+                      
+                      <button className="dropdown-item" onClick={logout} >
                         Log Out
                       </button>
                     </div>
