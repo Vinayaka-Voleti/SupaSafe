@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../supabase/supabaseClient';
+import { useNavigate } from 'react-router-dom';
+
 import Welcome from './Welcome';
 
 const AuthHome = (props) => {
@@ -64,16 +66,24 @@ const AuthHome = (props) => {
 
   const backgroundColor = props.theme === 'dark' ? '#333' : '#f8f9fa'; // Greyish color
 
+
+
+  
+  const navigate = useNavigate();
+  const goToEvents = () => {
+    console.log("Navigating");
+    navigate('/event');
+  }
   return (
     <div className="container py-5">
       <div className="row align-items-center g-lg-5">
       <div className="col-lg-7 d-flex flex-column justify-content-center">
         <h2 className="text-5xl sm:text-6xl font-bold" style={{ fontSize: '3rem', fontWeight: '700', textAlign: 'left', maxWidth: '90%' }}>
-          SupaSafe: Your Community's Watchful Eye
+          KonnexWeb
         </h2>
-        <p className="text-muted" style={{ lineHeight: '1.6', fontSize: '1rem', textAlign: 'left', maxWidth: '90%' }}>
+        {/* <p className="text-muted" style={{ lineHeight: '1.6', fontSize: '1rem', textAlign: 'left', maxWidth: '90%' }}>
           Stay connected with your neighborhood through SupaSafe! Our intuitive platform enhances community safety with real-time updates and alerts. Enjoy a user-friendly design built for maximum convenience.
-        </p>
+        </p> */}
       </div>
 
 
@@ -94,7 +104,7 @@ const AuthHome = (props) => {
                     Log In with GitHub
                   </button>
                   <p>or</p> */}
-                  <button className="btn btn-success" onClick={loginWithGoogle}>
+                  <button className="btn btn-success" onClick={goToEvents}>
                     Get Started
                   </button>
                 </div>
@@ -105,4 +115,4 @@ const AuthHome = (props) => {
   );
 };
 
-export default AuthHome;
+export default AuthHome

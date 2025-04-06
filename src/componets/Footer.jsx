@@ -16,7 +16,7 @@ const Footer = (props) => {
           {/* Brand Section */}
           <div className="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
             <h5 className="text-uppercase fw-bold mb-3">
-              <FaGem className="me-2" /> SupaSafe
+              <FaGem className="me-2" /> KonnexWeb
             </h5>
             <p>
               Your go-to platform for community safety and real-time alerts. Stay connected, stay safe!
@@ -53,19 +53,19 @@ const Footer = (props) => {
 
       {/* Social Media Section */}
       <section className="d-flex justify-content-center gap-3 mt-3">
-        <a href="#" target="_blank" rel="noopener noreferrer" className="text-reset fs-4">
+        <a href="/" target="_blank" rel="noopener noreferrer" className="text-reset fs-4">
           <FaFacebook />
         </a>
-        <a href="#" target="_blank" rel="noopener noreferrer" className="text-reset fs-4">
+        <a href="/" target="_blank" rel="noopener noreferrer" className="text-reset fs-4">
           <FaTwitter />
         </a>
-        <a href="#" target="_blank" rel="noopener noreferrer" className="text-reset fs-4">
+        <a href="https://www.instagram.com/sanjam_das/" target="_blank" rel="noopener noreferrer" className="text-reset fs-4">
           <FaInstagram />
         </a>
-        <a href="#" target="_blank" rel="noopener noreferrer" className="text-reset fs-4">
+        <a href="https://www.linkedin.com/in/sanjamdas/" target="_blank" rel="noopener noreferrer" className="text-reset fs-4">
           <FaLinkedin />
         </a>
-        <a href="https://github.com/Vinayaka-Voleti/SupaSafe" target="_blank" rel="noopener noreferrer" className="text-reset fs-4">
+        <a href="https://github.com/Vinayaka-Voleti/konnexweb" target="_blank" rel="noopener noreferrer" className="text-reset fs-4">
           <FaGithub />
         </a>
 

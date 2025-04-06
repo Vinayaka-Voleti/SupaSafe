@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../supabase/supabaseClient';
-import './NavBar';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const NavBar = (props) => {
   const [user, setUser] = useState(null);
@@ -31,17 +31,12 @@ const NavBar = (props) => {
     fetchSession();
   }, []);
 
-  const handelToggle = ()=>{
-    console.log("hello");
-  }
   const loginWithGoogle = async () => {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
       options: {
         redirectTo: `${window.location.origin}`,
-        queryParams: {
-          prompt: 'select_account'
-        }
+        queryParams: { prompt: 'select_account' }
       }
     });
     if (error) console.error('Google login error:', error.message);
@@ -57,67 +52,85 @@ const NavBar = (props) => {
   };
 
   return (
-    <div>
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
-        <div className="container-fluid">
-          <a className="navbar-brand" href="#" style={{ fontSize: '2rem' }}>
-            {props.title}
-          </a>
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="#">Link</a>
-              </li>
-            </ul>
-            <div className="auth-container mt-3">
-              {user ? (
-                <div className="auth-user">
-                  <div className="nav-item dropdown">
-                    <a
-                      className="nav-link dropdown-toggle d-flex align-items-center"
-                      href="#"
-                      role="button"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
-                    >
-                      {user.user_metadata?.avatar_url ? (
-                        <img
-                          src={user.user_metadata.avatar_url}
-                          alt="User Avatar"
-                          style={{ width: '40px', height: '40px', borderRadius: '50%' }}
-                        />
-                      ) : (
-                        <span>No Avatar</span>
-                      )}
-                    </a>
-                    {/* Aligning the dropdown menu to the left */}
-                    {/* <button onClick={handelToggle}>Toggle</button> */}
-                    <div className="dropdown-menu dropdown-menu-start " style={{position:'absolute', left:-100}}>
-                      
-                      <button className="dropdown-item" onClick={logout} >
-                        Log Out
-                      </button>
-                    </div>
-                  </div>
+    <nav className="navbar navbar-expand-lg navbar-light bg-light px-3">
+      <div className="container-fluid">
+        <a className="navbar-brand fs-2" href="#">
+          {props.title}
+        </a>
+
+        {/* Toggle button for mobile */}
+        <button 
+          className="navbar-toggler" 
+          type="button" 
+          data-bs-toggle="collapse" 
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav" 
+          aria-expanded="false" 
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav me-auto">
+            <li className="nav-item">
+              <a className="nav-link active" href="#">Dashboard</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="#">About</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="#">Blogs</a>
+
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/event">Events</a>
+            </li>
+          </ul>
+
+          {/* Authentication Section */}
+          <div className="d-flex align-items-center">
+            {user ? (
+              <div className="dropdown">
+                <div 
+                  className=" dropdown-toggle d-flex align-items-center" 
+                  type="button" 
+                  data-bs-toggle="dropdown" 
+                  aria-expanded="false"
+                >
+                  {user.user_metadata?.avatar_url ? (
+                    <img
+                      src={user.user_metadata.avatar_url}
+                      alt="User Avatar"
+                      className="rounded-circle me-2"
+                      style={{ width: '40px', height: '40px' }}
+                    />
+                  ) : (
+                    <span>No Avatar</span>
+                  )}
                 </div>
-              ) : (
-                <div className="auth-login">
-                  <button className="btn btn-success" onClick={loginWithGoogle}>
-                    Sign In
-                  </button>
-                </div>
-              )}
-            </div>
+                  {/* <span className="ms-2">{user.user_metadata?.full_name || 'User'}</span> */}
+                <ul className="dropdown-menu dropdown-menu-end">
+                <li>
+                    <button className="dropdown-item" onClick={logout}>Events</button>
+                  </li>
+                  <li>
+                    <button className="dropdown-item" onClick={logout}>Settings</button>
+                  </li>
+                  <li>
+                    <button className="dropdown-item" onClick={logout}>Log Out</button>
+                  </li>
+                </ul>
+              </div>
+            ) : (
+              <button className="btn btn-success" onClick={loginWithGoogle}>
+                Sign In
+              </button>
+            )}
           </div>
         </div>
-      </nav>
-    </div>
+      </div>
+    </nav>
   );
 };
 
